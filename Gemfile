@@ -4,6 +4,8 @@ source 'https://rubygems.org'
 gem 'rails',        '>= 5.1.2'
 # Use Puma as the app server
 gem 'puma',         '>= 3.9.1'
+# Use Twitter Bootstrap for responsive design
+gem 'bootstrap-sass', '>= 3.3.7'
 # Use SCSS for stylesheets
 gem 'sass-rails',   '>= 5.0.6'
 # Use Uglifier as compressor for JavaScript assets
