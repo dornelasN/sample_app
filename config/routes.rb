@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   get '/about', to: 'static_pages#about'
   get '/contact', to: 'static_pages#contact'
   get '/signup', to: 'users#new'
+  resources :users #endows the application with all the actions needed for a RESTful Users Resouce
 end

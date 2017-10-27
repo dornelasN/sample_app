@@ -11,7 +11,7 @@ class User < ApplicationRecord
                     #Active Record uniqueness validation does not guarantee uniequeness at
                     #database level
 
-  has_secure_password
+  has_secure_password #built in method to add a secure password
 
   validates(:password, presence: true, length: { minimum: 6 })
 end
