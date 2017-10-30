@@ -1,2 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-# empty
+# organize data to be loaded into the test database
+
+nelson:
+  name: Nelson Example
+  email: nelson@example.com
+  password_digest: <%= User.digest('password') %>
