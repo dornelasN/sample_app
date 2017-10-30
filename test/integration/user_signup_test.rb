@@ -11,6 +11,7 @@ class UserSignupTest < ActionDispatch::IntegrationTest
                                          password_confirmation: "bar" }}
     end
     
+    #test to make sure the new users page is rendered and the messages containers exist
     assert_template 'users/new'
     assert_select 'div#error_explanation'
     assert_select 'div.alert'

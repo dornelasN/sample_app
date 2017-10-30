@@ -8,9 +8,11 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  # if saving the new created user is successfull, redirect to show user page 
+  # flashing a welcome message, if failed, render the new user page with error messages
   def create
     @user = User.new(user_params)
-    if @user.save
+    if @user.save 
       flash[:success] = "#{@user.name}, welcome to the Sample App!"
       redirect_to @user
     else
