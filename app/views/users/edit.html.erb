@@ -7,7 +7,7 @@
     <%= render 'form' %>
 
     <div class="gravatar_edit">
-      <%= gravatar_for @user,  %>
+      <%= gravatar_for @user%>
       <% #eliminate phising page (attempt to obtain sensitive info) risk with rel="noopener"  %>
       <a href="http://gravatar.com/emails" target="_blank" rel="noopener">change</a>
     </div>
