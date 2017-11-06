@@ -17,10 +17,14 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     assert_select 'div.alert', "The form contains 4 errors."
   end
 
-  test "successful edits" do
-    log_in_as(@user)
+  test "successful edit with friendly forwarding" do
+    # edit_user_path page request
     get edit_user_path(@user)
-    assert_template 'users/edit'
+    # user is not logged_in, so requested URL is stored in session[:forwarding_url]
+    log_in_as(@user)
+    # user is now logged_in, and should be redirected to the stored URL in session[:forwarding_url]
+    assert_redirected_to edit_user_url(@user)
+    # after being redirected, the session[:forwarding_url] should be nil
 
     name = "Foo Bar"
     email = "foo@bar.com"
@@ -33,5 +37,10 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     @user.reload
     assert_equal name, @user.name
     assert_equal email, @user.email
+
+    #on subsequenet login attempts, user should be redirected to their profile page
+    assert_nil session[:forwarding_url]
+    log_in_as(@user)
+    assert_redirected_to user_url(@user)
   end
 end
