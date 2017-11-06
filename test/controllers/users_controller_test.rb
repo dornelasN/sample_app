@@ -4,6 +4,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
   def setup
     @user = users(:nelson)
+    @second_user = users(:testUser)
   end
 
   test "should get new" do
@@ -21,8 +22,23 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   #if not logged in, user should be redirected to login_url if trying to update an user
   test "should redirect update when not logged in" do
     patch user_path(@user), params: { user: { name: @user.name, email: @user.email } }
-
     assert_not flash.empty?
     assert_redirected_to login_url
+  end
+
+  #if logged in as userX, user should be redirected to home page when trying to edit userY info
+  test "should redirect edit when logged in as wrong user" do
+    log_in_as(@second_user)
+    get edit_user_path(@user)
+    assert flash.empty?
+    assert_redirected_to root_url
+  end
+
+  #if logged in as userX, user should be redirected to home page when trying to update userY info
+  test "should redirect update when logged in as wrong user" do
+    log_in_as(@second_user)
+    patch user_path(@user), params: { user: { name: @user.name, email: @user.email } }
+    assert flash.empty?
+    assert_redirected_to root_url    
   end
 end
