@@ -4,6 +4,8 @@ source 'https://rubygems.org'
 gem 'rails',        '>= 5.1.2'
 # bcrypt hashes password to prevent attackers to get the real passwords
 gem 'bcrypt',       '>= 3.1.11'
+# Faker makes sample users with semi-realistic names and email addresses
+gem 'faker',        '>= 1.7.3'
 # Use Puma as the app server
 gem 'puma',         '>= 3.9.1'
 # Use Twitter Bootstrap for responsive design
