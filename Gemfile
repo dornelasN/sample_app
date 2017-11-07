@@ -6,6 +6,10 @@ gem 'rails',        '>= 5.1.2'
 gem 'bcrypt',       '>= 3.1.11'
 # Faker makes sample users with semi-realistic names and email addresses
 gem 'faker',        '>= 1.7.3'
+# will_paginate paginates users so that only an X amount of users show in our page
+gem 'will_paginate', '>= 3.1.5'
+# bootstrap-will_paginate configures will_paginate to use Bootstrap's pagination styles
+gem 'bootstrap-will_paginate', '>= 1.0.0'
 # Use Puma as the app server
 gem 'puma',         '>= 3.9.1'
 # Use Twitter Bootstrap for responsive design
