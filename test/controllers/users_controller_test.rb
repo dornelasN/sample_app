@@ -32,6 +32,17 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to login_url
   end
 
+  # verify that the admin attribute is not editable through the web as it is not in the
+  # list of permitted parameters in user_params
+  test "should not allow the admin attribute to be edited via the web" do
+    log_in_as(@second_user)
+    assert_not @second_user.admin?
+    patch user_path(@second_user), params: { user: {  password: '',
+                                                      password_confirmation: '',
+                                                      admin: true } }
+    assert_not @second_user.reload.admin?
+  end
+
   #if logged in as userX, user should be redirected to home page when trying to edit userY info
   test "should redirect edit when logged in as wrong user" do
     log_in_as(@second_user)
