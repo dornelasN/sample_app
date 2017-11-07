@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   before_action :logged_in_user, only: [:index, :edit, :update]
   before_action :correct_user,   only: [:edit, :update]
+  # define will paginate per page globally so it is used for tests as well
+  WillPaginate.per_page = 10 
 
   def index
     @users = User.paginate(page: params[:page])
