@@ -17,6 +17,7 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  # before saving (BEFORE_SAVE) the new contact, send an activation email to the user
   # if saving the new created user is successfull, redirect to show user page 
   # flashing a welcome message, if failed, render the new user page with error messages
   def create
