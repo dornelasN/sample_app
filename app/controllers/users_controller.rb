@@ -17,15 +17,15 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  # before saving (BEFORE_SAVE) the new contact, send an activation email to the user
-  # if saving the new created user is successfull, redirect to show user page 
-  # flashing a welcome message, if failed, render the new user page with error messages
+  # before saving (if save is successful) the new contact, send an activation email to the user
+  # using UserMailer, and redirect user to the root_url, flash a :info message to activate account
+  # if failed, render the new user page with error messages
   def create
     @user = User.new(user_params)
     if @user.save 
-      log_in @user
-      flash[:success] = "#{@user.name}, welcome to the Sample App!"
-      redirect_to @user
+      UserMailer.account_activation(@user).deliver_now
+      flash[:info] = "#{@user.name}, please check your email to activate your account"
+      redirect_to root_url
     else
       render 'new'
     end
