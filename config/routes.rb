@@ -21,6 +21,6 @@ Rails.application.routes.draw do
   # GET - /password_resets/new - new - new_password_reset_path
   # POST - /password_resets/create - create - creat_password_reset_path
   # GET - /password_resets/<token>/edit - edit - edit_password_reset_path(token)
-  # POST - /password_resets/<token> - update - update_password_reset_path(token)
-  resources :password_reset, only: [:new, :create, :edit, :update]
+  # POST - /password_resets/<token> - update - update_password_reset_url(token)
+  resources :password_resets, only: [:new, :create, :edit, :update]
 end
