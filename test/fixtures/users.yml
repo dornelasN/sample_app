@@ -9,6 +9,12 @@ nelson:
   activated: true
   activated_at: <%= Time.zone.now %>
 
+non: 
+  name: Mike Not Activated
+  email: mike@notactivated.com
+  password_digest: <%= User.digest('password') %>
+  activated: false
+
 testUser:
   name: Test Example
   email: test@example.edu
