@@ -14,4 +14,13 @@ Rails.application.routes.draw do
   # HTTP request: GET, URL: /account_activation/<token>/edit, Action: EDIT
   # named RESTful route: edit_account_activation_url(token)
   resources :account_activations, only: [:edit] 
+
+  # Need forms for creating new password resets and for updating them by changing the password
+  # in the user model. So create routes for new, create, edit, and update through resources. 
+  # HTTP REQUEST - URL - ACTION - NAMED ROUTE 
+  # GET - /password_resets/new - new - new_password_reset_path
+  # POST - /password_resets/create - create - creat_password_reset_path
+  # GET - /password_resets/<token>/edit - edit - edit_password_reset_path(token)
+  # POST - /password_resets/<token> - update - update_password_reset_path(token)
+  resources :password_reset, only: [:new, :create, :edit, :update]
 end
