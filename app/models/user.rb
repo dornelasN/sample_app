@@ -52,15 +52,25 @@ class User < ApplicationRecord
   def forget
     update_attribute(:remember_digest, nil)
   end
+
+  # Refactoring user manipulations from controller to user model
+  def activate
+    update_attributes(activated: true, activated_at: Time.zone.now)
+    #update_attribute(:activated_at, Time.zone.now)
+  end
+
+  def send_activation_email
+    UserMailer.account_activation(self).deliver_now
+  end
+  
+  private
+
+    def downcase_email
+      email.downcase! # == (self.email = email.downcase)
+    end
+
+    def create_activation_digest
+      self.activation_token = User.new_token
+      self.activation_digest = User.digest(activation_token)
+    end
 end
-
-private
-
-  def downcase_email
-    email.downcase! # == (self.email = email.downcase)
-  end
-
-  def create_activation_digest
-    self.activation_token = User.new_token
-    self.activation_digest = User.digest(activation_token)
-  end
