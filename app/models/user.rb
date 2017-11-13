@@ -54,23 +54,33 @@ class User < ApplicationRecord
   end
 
   # Refactoring user manipulations from controller to user model
+  # assign activvated attribute to true
+  # and activated_at: Time.now (PDT time)
   def activate
-    update_attributes(activated: true, activated_at: Time.zone.now)
-    #update_attribute(:activated_at, Time.zone.now)
+    update_attributes(activated: true, activated_at: Time.now) 
+    #update_attribute(:activated_at, Time.now) 
   end
 
   def send_activation_email
     UserMailer.account_activation(self).deliver_now
   end
-  
+
+  # Create a reset token and send its digest with reset_sent_at: Time.now (PDT time)
   def create_reset_digest
     self.reset_token = User.new_token
-    update_attributes(reset_digest: User.digest(reset_token), reset_sent_at: Time.zone.now)
+    update_attributes(reset_digest: User.digest(reset_token), reset_sent_at: Time.now)
   end
 
+  # Use UserMailer to send email to user with password_reset link 
   def send_password_reset_email
     UserMailer.password_reset(self).deliver_now
   end
+
+  # Returns true if a password reset has expired (if sent more than two ours ago)
+  def password_reset_expired?
+    reset_sent_at < 2.hours.ago
+  end
+
   private
 
     def downcase_email
