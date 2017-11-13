@@ -22,7 +22,7 @@ class PasswordResetsController < ApplicationController
   def edit
   end
 
-  #TODO:
+  # Update password attribute
   # consider 4 cases:
   # 1 - An expired password reset: before accessing update, check_expiration with before_action
   # 2 - A failed update due to an invalid password: #render 'edit'
