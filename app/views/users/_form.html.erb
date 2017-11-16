@@ -1,7 +1,7 @@
 <% # when using form_for(@user) Rails uses POST if @user.new_record is TRUE,
 #                                          PATCH if @user.new_recorde is FALSE %>
     <%= form_for(@user) do |f| %>
-      <%= render 'shared/error_messages', object: @user %>
+      <%= render 'shared/error_messages', object: f.object %>
 
       <%= f.label :name%>
       <%= f.text_field :name, class: 'form-control' %>
