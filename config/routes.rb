@@ -23,4 +23,10 @@ Rails.application.routes.draw do
   # GET - /password_resets/<token>/edit - edit - edit_password_reset_path(token)
   # POST - /password_resets/<token> - update - update_password_reset_url(token)
   resources :password_resets, only: [:new, :create, :edit, :update]
+
+  # Interface to the Microposts resource will run mainly through Profile and Home pages
+  # so there is only need for the create and destroy actions in the Microposts controller
+  # POST - /microposts - create - microposts_path
+  # DELETE - /microposts/1 - destroy - micropost_path(micropost)
+  resources :microposts,      only: [:create, :destroy]
 end
