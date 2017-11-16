@@ -9,4 +9,15 @@ class Micropost < ApplicationRecord
   validates :user_id, presence: true
   # validates the presence of content attribute in micropost, and its maximum length of 140 chars
   validates :content, presence: true, length: { maximum: 140 }
+  # validate the memory size of the uploaded picture
+  validates :picture_size
+
+  private
+
+    # validate the memory size of the uploaded picture 
+    def picture_size
+      if picture.size > 5.megabytes
+        errors.add(:picture, "should be less than 5MB")
+      end
+    end
 end
