@@ -6,8 +6,18 @@ class PictureUploader < CarrierWave::Uploader::Base
   process resize_to_limit: [400, 400]
 
   # Choose what kind of storage to use for this uploader:
+<<<<<<< HEAD
   storage :file
   end
+=======
+  # :fog in production, :file otherwise
+  if Rails.env.production?
+    storage :fog
+  else
+    storage :file
+  end
+  
+>>>>>>> 970c1c5... Add user micropost with autoresizing image uploads
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
