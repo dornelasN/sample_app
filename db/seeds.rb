@@ -36,3 +36,13 @@ users = User.order(:created_at).take(6)
     user.microposts.create!(content: content) 
   }
 end 
+
+# Seed following relationships
+users = User.all
+user = users.first
+following = users[2..50]
+followers = users[3..40]
+# user(1) follows each of the users on the following array (2..50)
+following.each { |followed| user.follow(followed) }
+# each of the users between 3..40 will follow user (1) back
+followers.each { |follower| follower.follow(user) }

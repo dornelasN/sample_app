@@ -20,6 +20,8 @@ class UsersProfileTest < ActionDispatch::IntegrationTest
     assert_select 'h1>img.gravatar'
     # check for microposts.count somewhere on the HTML source of the page
     assert_match @user.microposts.count.to_s, response.body
+    # check for following stats 
+    assert_select 'div.stats'
     # check for a pagination <div>
     assert_select 'div.pagination', count: 1
     # check for the every micropost's content somewhere on the HTML source of the page
