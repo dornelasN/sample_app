@@ -115,13 +115,13 @@ aside {
 .stats {
   overflow: auto;
   margin-top: 0;
-  margin-left: 10px;
   padding: 0;
   a {
     float: left;
-    padding: 0 10px;
     border-left: 1px solid $gray-lighter;
+    padding: 0 10px;
     color: gray;
+    margin-bottom: 10px;
     &:first-child {
       padding-left: 0;
       border: 0;
@@ -138,13 +138,6 @@ aside {
 
 .users_avatar {
   overflow: auto;
-  margin-top: 10px;
-  .gravatar {
-    margin: 1px 1px;
-  }
-  a {
-    padding: 0;
-  }
 }
 
 .users.follow {
