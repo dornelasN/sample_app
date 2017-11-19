@@ -1,0 +1,8 @@
+$("#follow_form").html("<%= escape_javascript(render('users/follow'))%>");
+$("#followers").html('<%= @user.followers.count %>');
+
+<% # In case of an AJAX destroy request, Rails automatically calls the JavaScript embedded Ruby 
+# (destroy.js.erb) file. This allows to mix JavaScript and embedded Ruby to perform actions on
+# the current page. 
+# $ dollar-sign : access a DOM element based on its unique CSS id: (follow_form)
+# html : updates the HTML inside the element with the content of its argument %>

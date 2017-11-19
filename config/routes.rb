@@ -38,6 +38,6 @@ Rails.application.routes.draw do
   resources :microposts, only: [:create, :destroy]
 
   # POST - /relationships - create - relationships_path
-  # DELETE - /relationships/1 - destroy - relationships_path(relationship)
+  # DELETE - /relationships/1 - destroy - relationship_path(relationship)
   resources :relationships, only: [:create, :destroy]
 end
